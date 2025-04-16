@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himanshu Dhakal - Atomic Habits</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #131313;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header, footer {
+      background-color: #1e1e1e;
+      padding: 8px;
+      text-align: center;
+      flex-shrink: 0;
+      font-size: small;
+    }
+
+    .logo-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #00d084;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 5px;
+      padding-left: 20px; 
+      padding-right: 20px; 
+      margin-bottom: 10px;
+    }
+
+    header img {
+      height: 20px;
+      width: auto;
+    }
+
+    .container {
+      max-width: 960px; /* Reduced max-width */
+      margin: auto;
+      padding: 10px; /* Reduced padding */
+      text-align: center;
+    }
+
+    .controls {
+      margin: 10px 0; /* Reduced margin */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      scale: 0.5;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid #00d084;
+      color: #00d084;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      margin: 0 6px;
+      height: 40px;
+      text-align: center;
+    }
+
+    button:hover {
+      background: #00d084;
+      color: #000;
+    }
+
+    .pdf-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      width: 55%;
+      max-width: 60%; /* Reduced width */
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+    }
+
+    canvas {
+      width: 100%;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    #page-info {
+      text-align: center;
+      color: #aaa;
+      font-size: 8px;
+    }
+
+    footer {
+      font-size: 08px;
+      color: #888;
+      margin-top: auto;
+      text-align: center;
+      padding: 3px 18px;
+    }
+
+    #page-input {
+      padding-left: 8px;
+      font-size: 14px;
+      height: 40px;
+      margin-left: 3px;
+      margin-right: 3px;
+      border: 1px solid #00d084;
+      border-radius: 6px;
+    }
+
+    
+
+
+    
+@media (max-width: 768px) {
+  body {
+    font-size: 15px; /* Increase base font size */;
+  }
+
+  header img {
+    height: 30px; /* Increase logo size */
+  }
+
+  .logo-text {
+    font-size: 14px; /* Increase logo text size */
+  }
+
+  .container {
+    max-width: 55%; /* Allow container to take full width */
+    padding: 1px; /* Add padding */
+  }
+
+  .controls {
+    margin: 0px 3px; /* Increase margin */
+    flex-direction: column;
+    gap: 12px; /* Increase gap between controls */
+  }
+
+  button {
+    padding: 13px 13px; /* Increase padding */
+    margin: 3px 3px; /* Increase margin */
+    font-size: 16px; /* Increase button font size */
+    height: 50px; /* Increase button height */
+  }
+
+  .pdf-container {
+    width: 90%; /* Make the PDF container take more space */
+    margin: 0 auto;
+  }
+
+  #page-info {
+    font-size: 8px; /* Increase page info font size */;
+  }
+  #page-input {
+    height: 50px; /* Make input take full width */
+    margin-bottom: 3px; /* Increase margin */
+    font-size: 16px; /* Increase input font size */
+  }
+  footer {
+    font-size: 8px; /* Increase footer font size */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px; /* Increase base font size */;
+  }
+
+  header img {
+    height: 30px; /* Increase logo size */
+  }
+
+  .logo-text {
+    font-size: 14px; /* Increase logo text size */
+  }
+
+  .container {
+    max-width: 96%; /* Allow container to take full width */
+    padding: 1px; /* Add padding */
+  }
+
+  .controls {
+    margin: 0px 3px; /* Increase margin */
+    flex-direction: column;
+    gap: 12px; /* Increase gap between controls */
+  }
+
+  button {
+    padding: 13px 13px; /* Increase padding */
+    margin: 3px 3px; /* Increase margin */
+    font-size: 16px; /* Increase button font size */
+    height: 50px; /* Increase button height */
+  }
+
+  .pdf-container {
+    width: 90%; /* Make the PDF container take more space */
+    margin: 0 auto;
+  }
+
+  #page-info {
+    font-size: 8px; /* Increase page info font size */;
+  }
+  #page-input {
+    height: 50px; /* Make input take full width */
+    margin-bottom: 3px; /* Increase margin */
+    font-size: 16px; /* Increase input font size */
+  }
+  footer {
+    font-size: 8px; /* Increase footer font size */
+  }
+}
+
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="https://tr.rbxcdn.com/180DAY-fb1de66e86146225f897c0c11fd256cb/420/420/Hat/Webp/noFilter" alt="Logo" style="border-radius: 100%;" />
+    <span class="logo-text">
+      HimanshuDhakal
+    </span>
+  </header>
+  
+  <div class="container">
+    <h5>Atomic Habits</h5>
+
+    <div id="pdf-container" class="pdf-container"></div>
+
+    <div class="controls">
+      <div class="control-section">
+        <button onclick="prevPage()"><i class="fas fa-angle-left"></i> Previous</button>
+        <button onclick="nextPage()">Next <i class="fas fa-angle-right"></i></button>
+      </div>
+      <div class="control-section">
+        <input type="number" id="page-input" placeholder="Go to page" />
+        <button onclick="goToPage()">Go</button>
+      </div>
+    </div>
+
+    <div id="page-info">Page <span id="page-num">1</span> / <span id="page-count">?</span></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Himanshu Dhakal
+  </footer>
+
+  <script>
+    const url = 'Atomic-Habits-.pdf';
+    let pdfDoc = null, currentPage = 1, scale = 0.9;
+
+    const container = document.getElementById('pdf-container');
+    const pageNumSpan = document.getElementById('page-num');
+    const pageCountSpan = document.getElementById('page-count');
+
+    function renderSinglePage(num) {
+      container.innerHTML = '<p style="text-align:center; color:#aaa;">Loading page...</p>';
+
+      pdfDoc.getPage(num).then(page => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const viewport = page.getViewport({ scale });
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        canvas.style.display = 'block';
+        canvas.style.margin = '20px auto';
+        canvas.style.maxWidth = '100%';
+        canvas.style.borderRadius = '8px';
+        canvas.style.boxShadow = '0 0 8px rgba(0,0,0,0.4)';
+
+        requestAnimationFrame(() => {
+          container.innerHTML = '';
+          container.appendChild(canvas);
+          page.render({ canvasContext: ctx, viewport });
+          pageNumSpan.textContent = num;
+        });
+      });
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderSinglePage(currentPage);
+      }
+    }
+
+    function nextPage() {
+      if (currentPage < pdfDoc.numPages) {
+        currentPage++;
+        renderSinglePage(currentPage);
+      }
+    }
+
+    function goToPage() {
+      const input = document.getElementById('page-input');
+      const targetPage = parseInt(input.value);
+      if (!targetPage || targetPage < 1 || targetPage > pdfDoc.numPages) return;
+
+      currentPage = targetPage;
+      renderSinglePage(currentPage);
+    }
+
+    pdfjsLib.getDocument(url).promise.then(pdf => {
+      pdfDoc = pdf;
+      pageCountSpan.textContent = pdf.numPages;
+      renderSinglePage(currentPage);
+    });
+
+
+  </script>
+
+</body>
+</html>
